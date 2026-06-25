@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Audrey Lim — Learning &amp; Career Digital Roadmap</title>
+<style>
+  :root{
+    --navy: #0B1E33;
+    --navy-soft: #142C47;
+    --ivory: #F7F4EC;
+    --ivory-deep: #EFEAD9;
+    --gold: #B8923D;
+    --gold-soft: #D9BD7E;
+    --gold-text: #7D6024;
+    --slate: #5A6B7A;
+    --green: #3A7D5C;
+    --ink: #1B1F24;
+    --rule: rgba(11,30,51,0.12);
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background: var(--ivory);
+    color: var(--ink);
+    font-family: Calibri, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  h1,h2,h3,h4{
+    font-family: Cambria, "Times New Roman", serif;
+    color: var(--navy);
+    margin: 0;
+  }
+
+  .placeholder{
+    background: #FFF4D6;
+    border: 1px dashed var(--gold);
+    color: #6b5418;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-style: italic;
+    font-size: 0.95em;
+  }
+
+  /* ===== LEDGER SPINE (signature element) ===== */
+  .spine{
+    position: fixed;
+    top:0; left:0;
+    width: 84px;
+    height: 100vh;
+    background: var(--navy);
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 38px;
+    z-index: 100;
+    border-right: 1px solid rgba(184,146,61,0.25);
+  }
+  .spine-mark{
+    color: var(--gold-soft);
+    font-family: Cambria, serif;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    margin-bottom: 48px;
+    opacity: 0.85;
+  }
+  .spine-tabs{
+    display:flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+  }
+  .spine-tab{
+    background: none;
+    border:none;
+    color: rgba(247,244,236,0.55);
+    font-family: Cambria, serif;
+    cursor: pointer;
+    padding: 18px 0 18px 0;
+    width:100%;
+    text-align: center;
+    position: relative;
+    transition: color 0.2s ease, background 0.2s ease;
+  }
+  .spine-tab .num{
+    display:block;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+  .spine-tab .label{
+    display:block;
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    margin-top: 4px;
+    font-family: Calibri, sans-serif;
+  }
+  .spine-tab:hover{ color: rgba(247,244,236,0.85); }
+  .spine-tab.active{
+    color: var(--ivory);
+    background: var(--navy-soft);
+  }
+  .spine-tab.active::before{
+    content:"";
+    position:absolute;
+    left:0; top:0; bottom:0;
+    width:4px;
+    background: var(--gold);
+  }
+
+  /* ===== MAIN CONTENT ===== */
+  .main{
+    margin-left: 84px;
+    min-height: 100vh;
+  }
+
+  .page{
+    display:none;
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 64px 56px 120px 56px;
+  }
+  .page.active{ display:block; animation: fadein 0.35s ease; }
+  @keyframes fadein{ from{opacity:0; transform: translateY(6px);} to{opacity:1; transform: translateY(0);} }
+
+  .folio{
+    font-family: Cambria, serif;
+    color: var(--gold-text);
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    margin-bottom: 10px;
+  }
+
+  .page-title{
+    font-size: 38px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .page-subtitle{
+    color: var(--navy-soft);
+    font-family: Cambria, serif;
+    font-style: italic;
+    font-size: 17px;
+    margin-bottom: 36px;
+    opacity: 0.82;
+  }
+
+  .rule{
+    border:none;
+    border-top: 1px solid var(--rule);
+    margin: 36px 0;
+  }
+
+  .section-label{
+    font-family: Cambria, serif;
+    font-weight: 700;
+    color: var(--navy);
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    display:flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-label::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background: var(--rule);
+  }
+
+  p{ margin: 0 0 16px 0; }
+  ul, ol{ margin: 0 0 16px 0; padding-left: 22px; }
+  li{ margin-bottom: 6px; }
+
+  .pull-stat{
+    display:flex;
+    gap: 28px;
+    margin: 28px 0;
+    flex-wrap: wrap;
+  }
+  .stat-block{
+    flex: 1 1 140px;
+  }
+  .stat-num{
+    font-family: Cambria, serif;
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--navy);
+  }
+  .stat-label{
+    color: var(--slate);
+    font-size: 13px;
+    margin-top: 2px;
+  }
+
+  .card{
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 22px 24px;
+    margin-bottom: 16px;
+  }
+  .card h4{
+    font-size: 17px;
+    margin-bottom: 8px;
+  }
+  .card .meta{
+    color: var(--gold-text);
+    font-family: Cambria, serif;
+    font-size: 12.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .ledger-table{
+    width:100%;
+    border-collapse: collapse;
+    margin: 18px 0 28px 0;
+    font-size: 14.5px;
+  }
+  .ledger-table th{
+    text-align:left;
+    font-family: Cambria, serif;
+    color: var(--navy);
+    font-size: 12.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--navy);
+    padding: 8px 10px;
+  }
+  .ledger-table td{
+    padding: 10px 16px 10px 10px;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+  }
+  .ledger-table tr:last-child td{ border-bottom: none; }
+
+  .timeline{
+    position: relative;
+    padding-left: 28px;
+    margin: 24px 0;
+  }
+  .timeline::before{
+    content:"";
+    position:absolute;
+    left: 5px; top: 6px; bottom: 6px;
+    width: 1px;
+    background: var(--rule);
+  }
+  .t-item{
+    position: relative;
+    margin-bottom: 22px;
+  }
+  .t-item::before{
+    content:"";
+    position:absolute;
+    left: -28px; top: 4px;
+    width: 11px; height: 11px;
+    border-radius: 50%;
+    background: var(--ivory);
+    border: 2px solid var(--gold);
+  }
+  .t-year{
+    font-family: Cambria, serif;
+    font-weight: 700;
+    color: var(--navy);
+    font-size: 14.5px;
+    margin-bottom: 4px;
+  }
+
+  .quote-block{
+    border-left: 3px solid var(--gold);
+    padding-left: 20px;
+    margin: 24px 0;
+    font-family: Cambria, serif;
+    font-style: italic;
+    color: var(--navy-soft);
+    font-size: 17px;
+    line-height: 1.55;
+  }
+
+  a{ color: var(--green); text-decoration: none; border-bottom: 1px solid rgba(58,125,92,0.35); }
+  a:hover{ border-bottom-color: var(--green); }
+
+  .tag{
+    display:inline-block;
+    background: var(--ivory-deep);
+    color: var(--navy);
+    font-size: 12px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin: 0 6px 6px 0;
+    font-family: Calibri, sans-serif;
+  }
+
+  .footer-note{
+    margin-top: 56px;
+    padding-top: 20px;
+    border-top: 1px solid var(--rule);
+    color: var(--slate);
+    font-size: 13px;
+  }
+
+  /* Mobile */
+  @media (max-width: 760px){
+    .spine{
+      width: 100%;
+      height: auto;
+      flex-direction: row;
+      top:0; left:0;
+      padding: 0;
+      justify-content: space-around;
+      position: fixed;
+    }
+    .spine-mark{ display:none; }
+    .spine-tabs{ flex-direction: row; width:100%; justify-content: space-around; }
+    .spine-tab{ padding: 12px 4px; }
+    .spine-tab.active::before{ left:0; top:auto; bottom:0; width:100%; height:3px; }
+    .main{ margin-left:0; margin-top: 64px; }
+    .page{ padding: 36px 22px 90px 22px; }
+    .page-title{ font-size: 28px; }
+    .pull-stat{ gap:18px; }
+  }
+
+  :focus-visible{
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="spine" aria-label="Roadmap sections">
+  <div class="spine-mark">AUDREY LIM &middot; CPP ROADMAP</div>
+  <div class="spine-tabs">
+    <button class="spine-tab active" data-page="who" onclick="showPage('who')">
+      <span class="num">01</span><span class="label">WHO</span>
+    </button>
+    <button class="spine-tab" data-page="why" onclick="showPage('why')">
+      <span class="num">02</span><span class="label">WHY</span>
+    </button>
+    <button class="spine-tab" data-page="how" onclick="showPage('how')">
+      <span class="num">03</span><span class="label">HOW</span>
+    </button>
+    <button class="spine-tab" data-page="what" onclick="showPage('what')">
+      <span class="num">04</span><span class="label">WHAT</span>
+    </button>
+  </div>
+</nav>
+
+<div class="main">
+
+  <!-- ================= PART 1: WHO ================= -->
+  <section class="page active" id="page-who">
+    <div class="folio">FOLIO 01</div>
+    <h1 class="page-title">Who Am I?</h1>
+    <div class="page-subtitle">An introduction to your CPP Coach</div>
+
+    <p>I'm Audrey Lim, a Year 1 Banking &amp; Finance student at Ngee Ann Polytechnic's School of Business &amp; Accountancy. I've known since before I enrolled that I wanted to build a career in finance — specifically, in investment banking — and every assessment I've taken since starting this diploma has confirmed rather than redirected that instinct.</p>
+
+    <div class="rule"></div>
+
+    <div class="section-label">Self-assessment results</div>
+    <p class="placeholder">[FILL IN: Your actual 16Personalities result — type, and 2–3 sentences on how the traits described actually show up in how you work, e.g. how you handled group project deadlines, your role in team discussions.]</p>
+    <p class="placeholder">[FILL IN: Your O*NET Interest Profiler or MySkillsFuture result — which interest clusters scored highest, and whether that matched what you expected.]</p>
+    <p class="placeholder">[FILL IN: A KSAO reflection — one Knowledge area, one Skill, one Ability, and one "Other" trait (e.g. work ethic, resilience) you believe you currently hold, with one piece of evidence for each.]</p>
+
+    <div class="rule"></div>
+
+    <div class="section-label">A time I failed first, then succeeded</div>
+    <p class="placeholder">[FILL IN: A real example — first attempt that didn't work, what you changed, what the second attempt looked like, and what you took from it. Suggested length: 80–120 words.]</p>
+
+    <div class="rule"></div>
+
+    <div class="section-label">My proudest achievement</div>
+    <p class="placeholder">[FILL IN: One achievement, and explicitly name which NP value(s) it demonstrates — Resilience, Responsibility, Respect, Integrity, Compassion, or Gratitude. Pick 1–2 values, don't force all 6.]</p>
+
+    <div class="rule"></div>
+
+    <div class="section-label">My greatest skill, and how I've grown it</div>
+    <p class="placeholder">[FILL IN: Name one skill and trace it across time — when you first noticed it, one moment it was tested, and how it looks different now versus a year ago.]</p>
+
+    <div class="footer-note">Word count target for this page: 200–400 words once placeholders are completed.</div>
+  </section>
+
+  <!-- ================= PART 2: WHY ================= -->
+  <section class="page" id="page-why">
+    <div class="folio">FOLIO 02</div>
+    <h1 class="page-title">Why Am I Here?</h1>
+    <div class="page-subtitle">Purpose and beliefs</div>
+
+    <div class="quote-block">
+      "Large-scale financial decisions — mergers, acquisitions, IPOs, bond issuances — shape entire industries and economies, yet most people never see how those deals actually get made. I want to be at the centre of that process."
+    </div>
+
+    <p>I chose Banking &amp; Finance at Ngee Ann Polytechnic over the Junior College route because I already knew the direction I wanted, and I'd rather start building real financial fluency at seventeen than wait three more years to begin. Since enrolling, I've kept a daily habit of tracking financial news and following major M&amp;A activity — not because a module required it, but because understanding how capital actually moves through markets is the foundation everything else in this career sits on.</p>
+
+    <p>I'm under no illusion that this path is easy. Investment banking, especially at a firm like J.P. Morgan, sits among the most competitive entry points in the entire finance industry. Getting there from a polytechnic diploma means I have to do more, earlier, than someone starting from a university finance programme — which is exactly why this roadmap exists: not as a wish-list, but as a sequence of specific, achievable steps between where I am now and where I want to end up.</p>
+
+    <div class="section-label">What I believe</div>
+    <ul>
+      <li><strong>Competence earns trust before charisma does.</strong> In a field built on other people's money, being right and being rigorous matters more than being likeable.</li>
+      <li><strong>Starting early compounds.</strong> The advantage of beginning financial literacy at seventeen instead of twenty-one isn't really about the four years — it's about the habits that get to run for longer.</li>
+      <li><strong>Access has to be earned with evidence, not ambition alone.</strong> Saying "I want to work in IB" means nothing without a financial model, a CFA paper, or an internship to show for it.</li>
+    </ul>
+
+    <div class="rule"></div>
+
+    <div class="section-label">Where I want to be in 5–10 years</div>
+    <p>In five years, I want to have completed a finance degree at NUS or NTU, finished J.P. Morgan's relevant virtual or apprenticeship pathway, and secured a Summer Analyst placement. In ten, I want to be a working Investment Banking Analyst inside a Corporate &amp; Investment Banking team — not yet at the top, but unmistakably on the way there, with the technical and ethical foundation to be trusted with real client relationships.</p>
+
+    <div class="section-label">Why ethics matter to me here</div>
+    <p>Investment banking sits close to enormous amounts of other people's capital, and the industry's worst moments — from the 2008 financial crisis onward — have almost always traced back to someone treating integrity as optional under pressure. I want to be the kind of analyst whose numbers can be trusted precisely because cutting a corner was never on the table, even when no one was watching.</p>
+
+    <div class="footer-note">Word count target for this page: 200–300 words.</div>
+  </section>
+
+  <!-- ================= PART 3: HOW ================= -->
+  <section class="page" id="page-how">
+    <div class="folio">FOLIO 03</div>
+    <h1 class="page-title">How Do I Get There?</h1>
+    <div class="page-subtitle">Bringing the who and why into being</div>
+
+    <div class="section-label">Long-term target role</div>
+    <div class="card">
+      <div class="meta">Long-Term Career Goal &middot; Degree-Stage</div>
+      <h4>Investment Banking Analyst — J.P. Morgan, Global Investment Banking</h4>
+      <p>Investment Banking Analysts support live client transactions — mergers, acquisitions, leveraged buyouts, and capital markets advisory — by building financial models, analysing market data, and preparing materials used in real pitches and deal execution. This is the role my entire roadmap is built around reaching, and it is reached via a recognised undergraduate or graduate finance degree, typically through J.P. Morgan's Summer Analyst Programme.</p>
+      <p><strong>Why this, specifically:</strong> investment banking sits at the intersection of the things I find most absorbing — quantitative analysis, high-stakes judgment, and direct exposure to how capital actually moves. J.P. Morgan is one of the most selective and prestigious entry points into that work, which makes it the right target to plan backward from, even knowing how competitive it is.</p>
+    </div>
+
+    <div class="section-label">The realistic first step — a job I can actually apply for now</div>
+    <div class="card">
+      <div class="meta">Real, Diploma-Eligible Posting</div>
+      <h4>J.P. Morgan Singapore Apprenticeship Program</h4>
+      <p><strong>Roles &amp; responsibilities:</strong> A one-year program for polytechnic graduates, joining an innovative team within one of J.P. Morgan's lines of business in Singapore. Apprentices receive introductory training followed by an ongoing curriculum covering product knowledge, personal development, and professional skills, plus direct mentorship from business leaders on live projects.</p>
+      <p><strong>Qualifications &amp; experience required:</strong> Open to diploma graduates (or final-year diploma students) with no more than two years of work experience. Open to all disciplines — not restricted to Business or Finance — though a Banking &amp; Finance diploma gives a direct advantage for placement onto Corporate &amp; Investment Banking-track teams.</p>
+      <p><strong>Skills &amp; attributes required:</strong> Proficiency in Excel, PowerPoint, and Word; strong attention to detail; comfort working in teams; a highly motivated, "can-do" attitude; the ability to multi-task in a fast-paced environment; strong communication and interpersonal skills.</p>
+      <p><strong>Outcome:</strong> Strong performers may receive offers of full-time employment at the end of the program — making this the realistic bridge between my diploma now and the Analyst role I'm ultimately aiming for.</p>
+      <p class="tag">Source: jpmorganchase.com/careers, Singapore Apprenticeship Program listing</p>
+    </div>
+
+    <div class="rule"></div>
+
+    <div class="section-label">Why I'm confident in this choice</div>
+    <p>I didn't pick investment banking because it sounds prestigious — I picked it after explicitly testing it against two other paths I seriously considered: a fintech/AI product role, and a music career. <span class="placeholder">[FILL IN: 1–2 sentences from your own DYL workbook reflection on why IB won out over the other two paths you mapped — this is the comparison your Coach will want to see, since it shows real evaluation, not just a single fixed idea.]</span></p>
+
+    <div class="section-label">How conversations have shaped this choice</div>
+    <p class="placeholder">[FILL IN: This is a compulsory section. Name at least one specific conversation — a CPP Coach 1:1, a Career Fair booth, a webinar, or an industry mentor chat. Include: who you spoke to (name/designation if you have it), what company, and one concrete thing you learned that changed or confirmed your thinking. If you haven't had this conversation yet, this is the single highest-priority action item on this whole roadmap — book one before your coach review.]</p>
+
+    <div class="rule"></div>
+
+    <div class="section-label">Compulsory reflection questions</div>
+    <p><strong>How do I decide which profession to pursue?</strong><br>
+    I worked backward from a single test: which role would still excite me on a difficult Tuesday, not just on the days it sounds impressive at a dinner table. Investment banking passed that test for me because the actual day-to-day work — modelling, valuation, deal mechanics — is what I'm drawn to, independent of the prestige attached to it.</p>
+
+    <p><strong>How important is gender to my suitability for this role?</strong><br>
+    Not important to my actual capability. Investment banking's required knowledge, skills, and abilities — financial modelling, analytical rigor, communication under pressure — are not gendered competencies. <span class="placeholder">[FILL IN: optional — if you have a personal view or example here, e.g. research on women in IB, a mentor's perspective, add 1–2 sentences. If not, the sentence above is sufficient as your answer.]</span></p>
+
+    <div class="footer-note">Word count target for this page: 200–400 words once placeholders are completed.</div>
+  </section>
+
+  <!-- ================= PART 4: WHAT ================= -->
+  <section class="page" id="page-what">
+    <div class="folio">FOLIO 04</div>
+    <h1 class="page-title">What Do I Do?</h1>
+    <div class="page-subtitle">Course, modules, enrichment, and lifelong learning</div>
+
+    <div class="section-label">4a &middot; Course and modules</div>
+    <p>My Banking &amp; Finance diploma is structured so that each year builds directly toward the analytical and technical core an IB Analyst role requires. Below are the six modules most directly relevant to that goal, drawn from Year 2 and Year 3 of the curriculum.</p>
+
+    <table class="ledger-table">
+      <tr><th>Module</th><th>Year</th><th>Relevance to IB Analyst path</th></tr>
+      <tr>
+        <td><strong>Corporate Finance</strong></td>
+        <td>Y2.1</td>
+        <td>Capital budgeting, capital structure, and business valuation — the direct technical foundation for the financial modelling IB analysts perform daily.</td>
+      </tr>
+      <tr>
+        <td><strong>Financial Markets &amp; Instruments</strong></td>
+        <td>Y2.1</td>
+        <td>How stocks, bonds, and FX instruments function within the market system — essential context for any capital markets advisory work.</td>
+      </tr>
+      <tr>
+        <td><strong>Investments</strong></td>
+        <td>Y2.2</td>
+        <td>Risk/return characteristics and valuation techniques across asset classes — directly transferable to comparable company and DCF analysis.</td>
+      </tr>
+      <tr>
+        <td><strong>Corporate &amp; Institutional Banking</strong></td>
+        <td>Y2.2</td>
+        <td>Commercial lending, transaction management, and credit evaluation — gives me the institutional-banking-side vocabulary IB analysts work alongside.</td>
+      </tr>
+      <tr>
+        <td><strong>Risk &amp; Compliance</strong></td>
+        <td>Y2.2</td>
+        <td>Market and credit risk management, regulatory compliance — the guardrails every real deal has to be checked against.</td>
+      </tr>
+      <tr>
+        <td><strong>Applied Project in Finance (Capstone)</strong></td>
+        <td>Y3.1</td>
+        <td>An industry-based applied project requiring independent research, analysis, and problem-solving — the closest simulation my diploma offers to real deal work.</td>
+      </tr>
+    </table>
+
+    <p>Beyond the curriculum, I'm planning to use my Year 3 Business Elective slots on <strong>AI &amp; Digital Transformation</strong>, since fluency with AI-assisted modelling tools is becoming a baseline expectation in modern IB workflows, not just a fintech-specific skill.</p>
+
+    <div class="rule"></div>
+
+    <div class="section-label">4b &middot; CCAs and enrichment</div>
+    <div class="card">
+      <div class="meta">Competition &middot; In Progress</div>
+      <h4>JA Young Investors Challenge (JAYIC) 2026</h4>
+      <p>I'm currently part of a team competing in JAYIC 2026, run by JA Singapore in partnership with HSBC, working on a growth-oriented portfolio with ESG integration requirements (Portfolio A). This directly develops the portfolio construction and investment pitch skills an IB analyst eventually needs when presenting recommendations to clients or senior bankers — the difference is scale, not skill type.</p>
+    </div>
+    <p class="placeholder">[FILL IN: One NP or BA-level CCA you plan to join — e.g. Investech CCA, a finance/investment club — and one sentence on the specific skill or NP value it builds. Your DYL workbook already names "Investech CCA" as a target — confirm and expand on it here.]</p>
+
+    <div class="rule"></div>
+
+    <div class="section-label">4c &middot; Continuing education and lifelong learning</div>
+
+    <div class="card">
+      <div class="meta">Professional Credential</div>
+      <h4>CFA Level 1 (Chartered Financial Analyst)</h4>
+      <p><strong>Structure:</strong> The first of three exam levels in the CFA Program, covering ethics, quantitative methods, economics, financial statement analysis, and corporate finance — largely overlapping with and extending the technical core of my BF diploma.</p>
+      <p><strong>Admission requirements:</strong> Candidates need a bachelor's degree (or to be in the final year of one) — or, for those without, four years of combined work/education experience. <span class="placeholder">[FILL IN: confirm current CFA Institute entry requirements at cfainstitute.org closer to your application date, as eligibility rules are periodically updated.]</span></p>
+      <p><strong>Why this:</strong> CFA Level 1 is the most widely recognised credential signalling serious technical commitment to investment analysis — exactly the signal an IB recruiter looks for from a candidate without a traditional finance-degree pedigree yet.</p>
+    </div>
+
+    <div class="card">
+      <div class="meta">Technical Skills Certification</div>
+      <h4>Wall Street Prep / Breaking Into Wall Street (BIWS) — Financial Modelling</h4>
+      <p><strong>Structure:</strong> Self-paced, practitioner-built courses in DCF modelling, M&amp;A modelling, and LBO modelling, taught using the same Excel-based techniques used inside real IB teams.</p>
+      <p><strong>Admission requirements:</strong> Open enrolment, paid course — no formal prerequisites beyond basic Excel familiarity.</p>
+      <p><strong>Why this:</strong> Unlike CFA, which is broad and theory-heavy, this is the fastest way to build the exact modelling fluency an IB analyst is expected to have on day one — closing the practical skills gap a diploma alone won't close.</p>
+    </div>
+
+    <div class="rule"></div>
+
+    <div class="section-label">How I'll build an enterprising, future-ready mindset</div>
+    <p>I'm treating my diploma years as a testing ground rather than a holding pattern — using JAYIC to practise real portfolio decisions now, rather than waiting until a job forces me to learn under pressure. <span class="placeholder">[FILL IN: 1–2 sentences connecting this directly to a future plan you genuinely intend to follow through on, e.g. a specific Forage program start date, or your AI/data analytics minor decision.]</span></p>
+
+    <div class="footer-note">Combined word count target, Parts 4a–4c: 400–800 words once placeholders are completed.</div>
+  </section>
+
+</div>
+
+<script>
+  function showPage(id){
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.spine-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('page-' + id).classList.add('active');
+    document.querySelector('.spine-tab[data-page="' + id + '"]').classList.add('active');
+    window.scrollTo(0,0);
+  }
+</script>
+
+</body>
+</html>
